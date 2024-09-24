@@ -40,7 +40,33 @@ const threshold = (
   context: CanvasRenderingContext2D,
   effectSetting: EffectSetting
 ) => {
-  const threshold = 128;
+  const thr = 128;
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const offset = (width * y + x) * 4;
+      const red = imageData.data[offset];
+      const green = imageData.data[offset + 1];
+      const blue = imageData.data[offset + 2];
+      let gray = 0.299 * red + 0.587 * green + 0.114 * blue;
+      if (gray < thr) gray = 0;
+      else gray = 255;
+      imageData.data[offset] =
+        imageData.data[offset + 1] =
+        imageData.data[offset + 2] =
+          gray;
+    }
+  }
+  context.putImageData(imageData, 0, 0);
+};
+
+const dithering = (
+  width: number,
+  height: number,
+  imageData: ImageData,
+  context: CanvasRenderingContext2D,
+  effectSetting: EffectSetting
+) => {
+  const thr = 128;
   for (let y = 0; y < height; y++) {
     let prev = 0;
     for (let x = 0; x < width; x++) {
@@ -50,7 +76,31 @@ const threshold = (
       const blue = imageData.data[offset + 2];
       let gray = 0.299 * red + 0.587 * green + 0.114 * blue;
       gray += prev;
-      if (gray < threshold) {
+      if (gray < thr) {
+        imageData.data[offset] =
+          imageData.data[offset + 1] =
+          imageData.data[offset + 2] =
+            0;
+        prev = gray;
+      } else {
+        imageData.data[offset] =
+          imageData.data[offset + 1] =
+          imageData.data[offset + 2] =
+            255;
+        prev = gray - 255;
+      }
+    }
+  }
+  for (let y = 0; y < height; y++) {
+    let prev = 0;
+    for (let x = 0; x < width; x++) {
+      const offset = (width * y + x) * 4;
+      const red = imageData.data[offset];
+      const green = imageData.data[offset + 1];
+      const blue = imageData.data[offset + 2];
+      let gray = 0.299 * red + 0.587 * green + 0.114 * blue;
+      gray += prev;
+      if (gray < thr) {
         imageData.data[offset] =
           imageData.data[offset + 1] =
           imageData.data[offset + 2] =
@@ -69,6 +119,42 @@ const threshold = (
   context.putImageData(imageData, 0, 0);
 };
 
+const ascii = (
+  width: number,
+  height: number,
+  imageData: ImageData,
+  context: CanvasRenderingContext2D,
+  effectSetting: EffectSetting
+) => {
+  const cellSize = 8;
+  const numCols = Math.floor(width / cellSize);
+  const numRows = Math.floor(height / cellSize);
+  const chars = "@#=|:.";
+
+  context.font = `${cellSize}px monospace`;
+
+  context.fillStyle = "#ffffff";
+  context.fillRect(0, 0, cellSize * numCols, cellSize * numRows);
+  context.fillStyle = "#000000";
+  for (let y = 0; y < numRows; y++) {
+    for (let x = 0; x < numCols; x++) {
+      const posX = x * cellSize;
+      const posY = y * cellSize;
+
+      const offset = (width * posY + posX) * 4;
+      const red = imageData.data[offset];
+      const green = imageData.data[offset + 1];
+      const blue = imageData.data[offset + 2];
+      const gray = 0.299 * red + 0.587 * green + 0.114 * blue;
+
+      const charIndex = Math.floor((gray / 256) * chars.length);
+      const char = chars[charIndex] || " ";
+
+      context.fillText(char, posX, posY);
+    }
+  }
+};
+
 export const canvasRender = (
   width: number,
   height: number,
@@ -85,6 +171,12 @@ export const canvasRender = (
       break;
     case "threshold":
       threshold(width, height, imageData, context, effectSetting);
+      break;
+    case "dithering":
+      dithering(width, height, imageData, context, effectSetting);
+      break;
+    case "ascii":
+      ascii(width, height, imageData, context, effectSetting);
       break;
   }
 };
