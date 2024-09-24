@@ -10,7 +10,7 @@ const App = () => {
   const { cameraAccess, setCameraAccess, mediaStream, canvasRef, videoRef } =
     useUserMedia();
   const [effectSetting, setEffectSetting] = useState<EffectSetting>({
-    mode: "threshold",
+    mode: "original",
   });
 
   return (

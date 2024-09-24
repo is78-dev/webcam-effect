@@ -13,5 +13,5 @@ export const useAnimationFrame = (isRunning: boolean, callback: () => void) => {
   useEffect(() => {
     reqIdRef.current = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(reqIdRef.current);
-  }, [isRunning]);
+  }, [isRunning, callback]);
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { EffectSetting } from "../types/Setting";
+import ModeSelect from "./ModeSelect";
 
 type ToolbarProps = {
   cameraAccess: boolean;
@@ -15,13 +16,17 @@ const Toolbar = ({
   setEffectSetting,
 }: ToolbarProps) => {
   return (
-    <div className="h-screen w-20">
+    <div className="h-screen w-1/4 bg-white">
       <button
         onClick={() => setCameraAccess(!cameraAccess)}
         className="text-4xl"
       >
         📷
       </button>
+      <ModeSelect
+        effectSetting={effectSetting}
+        setEffectSetting={setEffectSetting}
+      />
     </div>
   );
 };
