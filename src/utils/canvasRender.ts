@@ -40,7 +40,7 @@ const threshold = (
   context: CanvasRenderingContext2D,
   effectSetting: EffectSetting
 ) => {
-  const thr = 128;
+  const thr = effectSetting.threshold?.threshold!;
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
       const offset = (width * y + x) * 4;
@@ -66,7 +66,7 @@ const dithering = (
   context: CanvasRenderingContext2D,
   effectSetting: EffectSetting
 ) => {
-  const thr = 128;
+  const thr = effectSetting.dithering?.threshold;
   for (let y = 0; y < height; y++) {
     let prev = 0;
     for (let x = 0; x < width; x++) {

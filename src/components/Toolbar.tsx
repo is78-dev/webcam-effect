@@ -2,6 +2,8 @@ import React from "react";
 import { EffectSetting } from "../types/Setting";
 import ModeSelect from "./ModeSelect";
 import AsciiSetting from "./AsciiSetting";
+import ThresholdSetting from "./ThresholdSetting";
+import DitheringSetting from "./DitheringSetting";
 
 type ToolbarProps = {
   cameraAccess: boolean;
@@ -28,6 +30,18 @@ const Toolbar = ({
         effectSetting={effectSetting}
         setEffectSetting={setEffectSetting}
       />
+      {effectSetting.mode === "threshold" && (
+        <ThresholdSetting
+          effectSetting={effectSetting}
+          setEffectSetting={setEffectSetting}
+        />
+      )}
+      {effectSetting.mode === "dithering" && (
+        <DitheringSetting
+          effectSetting={effectSetting}
+          setEffectSetting={setEffectSetting}
+        />
+      )}
       {effectSetting.mode === "ascii" && (
         <AsciiSetting
           effectSetting={effectSetting}

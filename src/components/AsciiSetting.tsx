@@ -30,7 +30,7 @@ const AsciiSetting = ({
         min={4}
         max={32}
       />
-      <Text name="テキスト" value={text} setValue={setText} />
+      <Text name="テキスト(黒-->白)" value={text} setValue={setText} />
     </div>
   );
 };
