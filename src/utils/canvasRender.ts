@@ -66,7 +66,7 @@ const dithering = (
   context: CanvasRenderingContext2D,
   effectSetting: EffectSetting
 ) => {
-  const thr = effectSetting.dithering?.threshold;
+  const thr = effectSetting.dithering?.threshold!;
   for (let y = 0; y < height; y++) {
     let prev = 0;
     for (let x = 0; x < width; x++) {
