@@ -126,10 +126,10 @@ const ascii = (
   context: CanvasRenderingContext2D,
   effectSetting: EffectSetting
 ) => {
-  const cellSize = 8;
+  const cellSize = effectSetting.ascii!.fontSize;
   const numCols = Math.floor(width / cellSize);
   const numRows = Math.floor(height / cellSize);
-  const chars = "@#=|:.";
+  const chars = effectSetting.ascii!.text;
 
   context.font = `${cellSize}px monospace`;
 
@@ -150,7 +150,7 @@ const ascii = (
       const charIndex = Math.floor((gray / 256) * chars.length);
       const char = chars[charIndex] || " ";
 
-      context.fillText(char, posX, posY);
+      context.fillText(char, posX, posY + cellSize);
     }
   }
 };

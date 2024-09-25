@@ -11,7 +11,6 @@ const ModeSelect = ({ effectSetting, setEffectSetting }: ModeSelectProps) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const newMode = event.target.value as Mode;
-    console.log(newMode);
     setEffectSetting({ ...effectSetting, mode: newMode });
     setSelectedMode(newMode);
   };

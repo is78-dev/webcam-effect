@@ -1,6 +1,7 @@
 import React from "react";
 import { EffectSetting } from "../types/Setting";
 import ModeSelect from "./ModeSelect";
+import AsciiSetting from "./AsciiSetting";
 
 type ToolbarProps = {
   cameraAccess: boolean;
@@ -27,6 +28,12 @@ const Toolbar = ({
         effectSetting={effectSetting}
         setEffectSetting={setEffectSetting}
       />
+      {effectSetting.mode === "ascii" && (
+        <AsciiSetting
+          effectSetting={effectSetting}
+          setEffectSetting={setEffectSetting}
+        />
+      )}
     </div>
   );
 };

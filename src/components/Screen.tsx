@@ -27,6 +27,7 @@ const Screen = ({
     ctx.clearRect(0, 0, width, height); // canvasからカメラ映像を削除
 
     canvasRender(width, height, imageData, ctx, effectSetting); // effectSettingに応じた描画処理
+    if (!mediaStream) ctx.clearRect(0, 0, width, height); // mediaStreamが存在しないときcanvasをクリア
   };
 
   useAnimationFrame(!!mediaStream, updateCanvas);

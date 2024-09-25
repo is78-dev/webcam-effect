@@ -12,7 +12,6 @@ const App = () => {
   const [effectSetting, setEffectSetting] = useState<EffectSetting>({
     mode: "original",
   });
-
   return (
     <main className="flex bg-[#333]">
       <Toolbar
