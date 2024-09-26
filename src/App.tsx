@@ -7,8 +7,15 @@ import { useUserMedia } from "./hooks/useUserMedia";
 import { EffectSetting } from "./types/Setting";
 
 const App = () => {
-  const { cameraAccess, setCameraAccess, mediaStream, canvasRef, videoRef } =
-    useUserMedia();
+  const {
+    cameraAccess,
+    setCameraAccess,
+    outCamera,
+    setOutCamera,
+    mediaStream,
+    canvasRef,
+    videoRef,
+  } = useUserMedia();
   const [effectSetting, setEffectSetting] = useState<EffectSetting>({
     mode: "original",
   });
@@ -17,6 +24,8 @@ const App = () => {
       <Toolbar
         cameraAccess={cameraAccess}
         setCameraAccess={setCameraAccess}
+        outCamera={outCamera}
+        setOutCamera={setOutCamera}
         effectSetting={effectSetting}
         setEffectSetting={setEffectSetting}
       />

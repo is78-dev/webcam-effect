@@ -5,10 +5,13 @@ import AsciiSetting from "./AsciiSetting";
 import ThresholdSetting from "./ThresholdSetting";
 import DitheringSetting from "./DitheringSetting";
 import CameraAccessButton from "./CameraAccessButton";
+import CameraSwitchButton from "./CameraSwitchButton";
 
 type ToolbarProps = {
   cameraAccess: boolean;
   setCameraAccess: React.Dispatch<React.SetStateAction<boolean>>;
+  outCamera: boolean;
+  setOutCamera: React.Dispatch<React.SetStateAction<boolean>>;
   effectSetting: EffectSetting;
   setEffectSetting: React.Dispatch<React.SetStateAction<EffectSetting>>;
 };
@@ -16,6 +19,8 @@ type ToolbarProps = {
 const Toolbar = ({
   cameraAccess,
   setCameraAccess,
+  outCamera,
+  setOutCamera,
   effectSetting,
   setEffectSetting,
 }: ToolbarProps) => {
@@ -25,6 +30,10 @@ const Toolbar = ({
         <CameraAccessButton
           cameraAccess={cameraAccess}
           setCameraAccess={setCameraAccess}
+        />
+        <CameraSwitchButton
+          cameraSwitch={outCamera}
+          setCameraSwitch={setOutCamera}
         />
       </div>
 
