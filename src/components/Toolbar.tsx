@@ -26,7 +26,7 @@ const Toolbar = ({
 }: ToolbarProps) => {
   return (
     <div className="h-screen w-1/4 bg-white">
-      <div className="m-3 flex justify-center items-center gap-3">
+      <div className="m-3 flex justify-center items-center gap-3 flex-wrap">
         <CameraAccessButton
           cameraAccess={cameraAccess}
           setCameraAccess={setCameraAccess}

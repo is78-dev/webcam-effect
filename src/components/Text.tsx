@@ -19,7 +19,7 @@ const Text = ({ name, value, setValue, ...sliderProps }: TextProps) => {
         onChange={handleChange}
         id={`text-${name}`}
         value={value}
-        className="block rounded outline outline-2 outline-gray-300 focus:outline-blue-400"
+        className="block max-w-full rounded outline outline-2 outline-gray-300 focus:outline-blue-400"
       />
     </div>
   );

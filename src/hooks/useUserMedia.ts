@@ -10,10 +10,6 @@ export const useUserMedia = () => {
   useEffect(() => {
     // mediaStreamが存在する場合、一度カメラを切る
     if (mediaStream) {
-      // canvasへの描画をクリア
-      const canvas = canvasRef.current!;
-      canvas.getContext("2d")?.clearRect(0, 0, canvas.width, canvas.height);
-
       // カメラへのアクセスを終了
       mediaStream.getTracks().forEach((track) => track.stop());
       videoRef.current!.srcObject = null;

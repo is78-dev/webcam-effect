@@ -27,15 +27,20 @@ const Screen = ({
     ctx.clearRect(0, 0, width, height); // canvasからカメラ映像を削除
 
     canvasRender(width, height, imageData, ctx, effectSetting); // effectSettingに応じた描画処理
-    if (!mediaStream) ctx.clearRect(0, 0, width, height); // mediaStreamが存在しないときcanvasをクリア
   };
 
-  useAnimationFrame(!!mediaStream, updateCanvas);
+  const endUpdateCanvas = () => {
+    const canvas = canvasRef.current!;
+    const ctx = canvas.getContext("2d", { willReadFrequently: true })!;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  };
+
+  useAnimationFrame(!!mediaStream, updateCanvas, endUpdateCanvas);
 
   return (
     <div className="h-screen w-full flex justify-center items-center">
       <video ref={videoRef} className="hidden"></video>
-      <canvas ref={canvasRef}></canvas>
+      <canvas ref={canvasRef} className="max-w-full"></canvas>
     </div>
   );
 };

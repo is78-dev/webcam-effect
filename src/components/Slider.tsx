@@ -23,7 +23,7 @@ const Slider = ({ name, value, setValue, ...sliderProps }: SliderProps) => {
         min={sliderProps.min}
         max={sliderProps.max}
         value={value}
-        className="block"
+        className="block max-w-full"
       />
     </div>
   );
