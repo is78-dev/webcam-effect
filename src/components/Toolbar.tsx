@@ -4,6 +4,7 @@ import ModeSelect from "./ModeSelect";
 import AsciiSetting from "./AsciiSetting";
 import ThresholdSetting from "./ThresholdSetting";
 import DitheringSetting from "./DitheringSetting";
+import CameraAccessButton from "./CameraAccessButton";
 
 type ToolbarProps = {
   cameraAccess: boolean;
@@ -20,12 +21,13 @@ const Toolbar = ({
 }: ToolbarProps) => {
   return (
     <div className="h-screen w-1/4 bg-white">
-      <button
-        onClick={() => setCameraAccess(!cameraAccess)}
-        className="text-4xl"
-      >
-        📷
-      </button>
+      <div className="m-3 flex justify-center items-center gap-3">
+        <CameraAccessButton
+          cameraAccess={cameraAccess}
+          setCameraAccess={setCameraAccess}
+        />
+      </div>
+
       <ModeSelect
         effectSetting={effectSetting}
         setEffectSetting={setEffectSetting}
