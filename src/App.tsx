@@ -26,6 +26,7 @@ const App = () => {
         setCameraAccess={setCameraAccess}
         outCamera={outCamera}
         setOutCamera={setOutCamera}
+        canvasRef={canvasRef}
         effectSetting={effectSetting}
         setEffectSetting={setEffectSetting}
       />

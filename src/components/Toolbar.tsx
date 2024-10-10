@@ -6,12 +6,14 @@ import ThresholdSetting from "./ThresholdSetting";
 import DitheringSetting from "./DitheringSetting";
 import CameraAccessButton from "./CameraAccessButton";
 import CameraSwitchButton from "./CameraSwitchButton";
+import DownloadButton from "./DownloadButton";
 
 type ToolbarProps = {
   cameraAccess: boolean;
   setCameraAccess: React.Dispatch<React.SetStateAction<boolean>>;
   outCamera: boolean;
   setOutCamera: React.Dispatch<React.SetStateAction<boolean>>;
+  canvasRef: React.RefObject<HTMLCanvasElement>;
   effectSetting: EffectSetting;
   setEffectSetting: React.Dispatch<React.SetStateAction<EffectSetting>>;
 };
@@ -21,6 +23,7 @@ const Toolbar = ({
   setCameraAccess,
   outCamera,
   setOutCamera,
+  canvasRef,
   effectSetting,
   setEffectSetting,
 }: ToolbarProps) => {
@@ -31,6 +34,7 @@ const Toolbar = ({
           cameraAccess={cameraAccess}
           setCameraAccess={setCameraAccess}
         />
+        <DownloadButton canvasRef={canvasRef} />
         <CameraSwitchButton
           cameraSwitch={outCamera}
           setCameraSwitch={setOutCamera}
