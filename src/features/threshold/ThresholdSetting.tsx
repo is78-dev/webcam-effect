@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
-import Slider from "./Slider";
-import { EffectSetting } from "../types/Setting";
+import Slider from "../../components/Slider";
+import { EffectSetting } from "../../types/Setting";
 
-type DitheringSettingProps = {
+type ThresholdSettingProps = {
   effectSetting: EffectSetting;
   setEffectSetting: React.Dispatch<React.SetStateAction<EffectSetting>>;
 };
 
-const DitheringSetting = ({
+const ThresholdSetting = ({
   effectSetting,
   setEffectSetting,
-}: DitheringSettingProps) => {
+}: ThresholdSettingProps) => {
   const [threshold, setThreshold] = useState<number>(128);
 
   useEffect(() => {
     setEffectSetting({
       ...effectSetting,
-      dithering: { threshold: threshold },
+      threshold: { threshold: threshold },
     });
   }, [threshold]);
 
@@ -33,4 +33,4 @@ const DitheringSetting = ({
   );
 };
 
-export default DitheringSetting;
+export default ThresholdSetting;

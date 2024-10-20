@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import Toolbar from "./components/Toolbar";
-import Screen from "./components/Screen";
+import Toolbar from "./features/toolbar/Toolbar";
+import Screen from "./features/screen/Screen";
 import { useUserMedia } from "./hooks/useUserMedia";
 import { EffectSetting } from "./types/Setting";
 

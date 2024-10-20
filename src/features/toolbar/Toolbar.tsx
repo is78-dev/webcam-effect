@@ -1,9 +1,9 @@
 import React from "react";
-import { EffectSetting } from "../types/Setting";
+import { EffectSetting } from "../../types/Setting";
 import ModeSelect from "./ModeSelect";
-import AsciiSetting from "./AsciiSetting";
-import ThresholdSetting from "./ThresholdSetting";
-import DitheringSetting from "./DitheringSetting";
+import AsciiSetting from "../ascii/AsciiSetting";
+import ThresholdSetting from "../threshold/ThresholdSetting";
+import DitheringSetting from "../dithering/DitheringSetting";
 import CameraAccessButton from "./CameraAccessButton";
 import CameraSwitchButton from "./CameraSwitchButton";
 import DownloadButton from "./DownloadButton";

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Slider from "./Slider";
-import Text from "./Text";
-import { EffectSetting } from "../types/Setting";
+import Slider from "../../components/Slider";
+import Text from "../../components/Text";
+import { EffectSetting } from "../../types/Setting";
 
 type AsciiSettingProps = {
   effectSetting: EffectSetting;

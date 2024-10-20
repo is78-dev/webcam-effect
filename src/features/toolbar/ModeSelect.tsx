@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { EffectSetting, Mode, modes } from "../types/Setting";
+import { EffectSetting, Mode, modes } from "../../types/Setting";
 
 type ModeSelectProps = {
   effectSetting: EffectSetting;
