@@ -1,7 +1,7 @@
 import React from "react";
 import { EffectSetting } from "../../types/Setting";
 import { useAnimationFrame } from "../../hooks/useAnimationFrame";
-import { canvasRender } from "../../utils/canvasRender";
+import { canvasRender } from "./canvasRender";
 
 type ScreenProps = {
   mediaStream: MediaStream | null;

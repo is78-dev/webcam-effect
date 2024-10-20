@@ -1,4 +1,5 @@
-import { EffectSetting } from "../types/Setting";
+import { EffectSetting } from "../../types/Setting";
+import { hexToRgb } from "../../utils/hexToRgb";
 
 const original = (
   width: number,
@@ -40,7 +41,9 @@ const threshold = (
   context: CanvasRenderingContext2D,
   effectSetting: EffectSetting
 ) => {
-  const thr = effectSetting.threshold?.threshold!;
+  const thr = effectSetting.threshold?.threshold || 128;
+  const col1 = hexToRgb(effectSetting.threshold?.color1 || "#000000");
+  const col2 = hexToRgb(effectSetting.threshold?.color2 || "#ffffff");
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
       const offset = (width * y + x) * 4;
@@ -48,12 +51,16 @@ const threshold = (
       const green = imageData.data[offset + 1];
       const blue = imageData.data[offset + 2];
       let gray = 0.299 * red + 0.587 * green + 0.114 * blue;
-      if (gray < thr) gray = 0;
-      else gray = 255;
-      imageData.data[offset] =
-        imageData.data[offset + 1] =
-        imageData.data[offset + 2] =
-          gray;
+      if (gray < thr) {
+        imageData.data[offset] = col1?.r || 0;
+        imageData.data[offset+1] = col1?.g || 0;
+        imageData.data[offset+2] = col1?.b || 0;
+      }
+      else {
+        imageData.data[offset] = col2?.r || 255;
+        imageData.data[offset+1] = col2?.g || 255;
+        imageData.data[offset+2] = col2?.b || 255;
+      }
     }
   }
   context.putImageData(imageData, 0, 0);

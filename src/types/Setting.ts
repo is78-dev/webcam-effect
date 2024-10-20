@@ -10,6 +10,8 @@ export type EffectSetting = {
   mode: Mode;
   threshold?: {
     threshold: number;
+    color1: string;
+    color2: string;
   };
   dithering?: {
     threshold: number;
