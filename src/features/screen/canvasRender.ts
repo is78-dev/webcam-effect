@@ -44,6 +44,7 @@ const threshold = (
   const thr = effectSetting.threshold?.threshold || 128;
   const col1 = hexToRgb(effectSetting.threshold?.color1 || "#000000");
   const col2 = hexToRgb(effectSetting.threshold?.color2 || "#ffffff");
+  console.log(col2);
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
       const offset = (width * y + x) * 4;
@@ -52,14 +53,14 @@ const threshold = (
       const blue = imageData.data[offset + 2];
       let gray = 0.299 * red + 0.587 * green + 0.114 * blue;
       if (gray < thr) {
-        imageData.data[offset] = col1?.r || 0;
-        imageData.data[offset+1] = col1?.g || 0;
-        imageData.data[offset+2] = col1?.b || 0;
+        imageData.data[offset] = col1?.r ?? 0;
+        imageData.data[offset+1] = col1?.g ?? 0;
+        imageData.data[offset+2] = col1?.b ?? 0;
       }
       else {
-        imageData.data[offset] = col2?.r || 255;
-        imageData.data[offset+1] = col2?.g || 255;
-        imageData.data[offset+2] = col2?.b || 255;
+        imageData.data[offset] = col2?.r ?? 255;
+        imageData.data[offset+1] = col2?.g ?? 255;
+        imageData.data[offset+2] = col2?.b ?? 255;
       }
     }
   }
